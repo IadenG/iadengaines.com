@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("writing", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 10);
+---
+
+<Base>
+  <h1>Iaden Gaines</h1>
+  <p>
+    Builder, entrepreneur, engineer-in-training. I run
+    <strong>House of Kairos</strong> (luxury watch trading) and
+    <strong>VersionEx Auto</strong> (automotive content), build
+    personal AI infrastructure, and start Mechanical Engineering at
+    Oregon State in Fall 2026.
+  </p>
+  <p class="muted">
+    This site is the permanent home for everything I write — platforms
+    come and go, this domain doesn't.
+  </p>
+
+  <h2>Writing</h2>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+        <span class="muted"> — {post.data.date.toISOString().slice(0, 10)}</span>
+      </li>
+    ))}
+  </ul>
+
+  <h2>Elsewhere</h2>
+  <p class="muted">
+    <a href="https://github.com/IadenG">GitHub</a> ·
+    <a href="https://www.instagram.com/iaden.gaines/">Instagram</a> ·
+    <a href="https://www.instagram.com/versionexauto/">VersionEx Auto</a>
+  </p>
+</Base>

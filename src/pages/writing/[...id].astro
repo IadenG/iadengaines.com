@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing");
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const sourceLabel = post.data.source !== "original" ? post.data.source.replace(/-/g, " ") : null;
+---
+
+<Base title={`${post.data.title} — Iaden Gaines`}>
+  <h1>{post.data.title}</h1>
+  <p class="muted">
+    {post.data.date.toISOString().slice(0, 10)}
+    {sourceLabel && (
+      <>
+        {" · originally on "}
+        {post.data.sourceUrl ? <a href={post.data.sourceUrl}>{sourceLabel}</a> : sourceLabel}
+      </>
+    )}
+  </p>
+  <Content />
+</Base>

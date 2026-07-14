@@ -1,0 +1,52 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = "Iaden Gaines", description = "Builder, entrepreneur, engineer-in-training. Permanent home for everything I write and build." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="alternate" type="application/rss+xml" title="Iaden Gaines" href="/rss.xml" />
+    <title>{title}</title>
+    <style>
+      :root {
+        --fg: #1a1a1a;
+        --muted: #666;
+        --accent: #f4dcb8;
+        --max: 42rem;
+      }
+      body {
+        margin: 0 auto;
+        padding: 2rem 1.25rem 4rem;
+        max-width: var(--max);
+        font: 18px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--fg);
+      }
+      header nav {
+        display: flex;
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+        font-size: 0.95rem;
+      }
+      a { color: inherit; }
+      h1, h2, h3 { line-height: 1.25; }
+      .muted { color: var(--muted); }
+      mark { background: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/"><strong>Iaden Gaines</strong></a>
+        <a href="/writing">Writing</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+  </body>
+</html>
