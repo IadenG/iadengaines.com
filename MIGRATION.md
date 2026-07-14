@@ -28,7 +28,9 @@ verified.**
 ## Launch
 
 - [ ] Register **iadengaines.com** (ratified 2026-07-06) — Cloudflare Registrar, at-cost.
-- [ ] Create GitHub repo `IadenG/iadengaines.com`, push.
+- [x] Create GitHub repo `IadenG/iadengaines.com`, push. *(2026-07-14 — repo public,
+      CI deploys to GitHub Pages at iadeng.github.io/iadengaines.com as interim host;
+      the ISA sanctions either host. Cloudflare Pages needs `bunx wrangler login`.)*
 - [ ] Cloudflare Pages: connect repo, build command `bunx astro build`, output `dist`.
 - [ ] Attach domain, verify HTTPS.
 - [ ] Verify live with Interceptor screenshot.
